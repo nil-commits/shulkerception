@@ -1,67 +1,87 @@
 # Shulkerception
 
-A server plugin for **Minecraft 26.2 with Java 25**, available in Paper and Bukkit/CraftBukkit/Spigot editions, that lets players put shulker boxes into placed shulker boxes. Players use ordinary, unmodified Minecraft Java clients. A Mojang vanilla server cannot load plugins.
+**Version 1.1.0 · Author: nil-commits**
 
-## Install and use
+Put shulker boxes inside placed shulker boxes using ordinary Minecraft Java clients.
+Version-specific Bukkit/Spigot and Paper builds cover **55 stable Minecraft versions from 1.11 through 26.2**, with **86 pinned API build targets**. See [COMPATIBILITY.md](COMPATIBILITY.md) for the exact coverage and exceptions.
 
-1. Stop your server.
-2. Copy the appropriate JAR into the server's `plugins` folder: `shulkerception-1.0.0-bukkit.jar` for CraftBukkit/Spigot 26.2, or `shulkerception-1.0.0-paper.jar` for Paper 26.2. Both are included in the release bundle and in `dist/`. The filename `dist/shulkerception-1.0.0.jar` is a compatibility copy of the current Paper edition. Install **only one** of these files; they all use the plugin name `Shulkerception` and the same configuration folder.
-3. Start the server. Check the console for `Shulker nesting enabled`.
-4. Place and open a shulker box. Click another shulker box into a slot, shift-click it from your inventory, or use a number key / offhand swap over a slot.
+## Download and install
 
-All 17 colors are supported, including undyed boxes. All players can use the feature; no commands, permissions, client mods, or additional plugins are required. Inner boxes can contain items or further boxes. To open an inner box, take it out and place it in the world.
+Get the JAR for your exact Minecraft version and server edition from the [GitHub releases](https://github.com/nil-commits/shulkerception/releases).
 
-The plugin writes directly to the placed box's inventory and clones complete item stacks, retaining their contents and metadata. Storage and block drops use the server's normal item persistence. It does not maintain a separate database or replace the shulker interface.
+For example:
 
-## Limits and scope
+- Paper 26.2: `shulkerception-1.1.0-mc26.2-paper.jar`
+- Spigot/CraftBukkit 1.20.4: `shulkerception-1.1.0-mc1.20.4-bukkit.jar`
+- Spigot/CraftBukkit 1.12.2: `shulkerception-1.1.0-mc1.12.2-bukkit.jar`
 
-The first start creates `plugins/Shulkerception/config.yml`:
+Stop the server, remove the previous Shulkerception JAR, install **one** matching JAR in `plugins/`, and restart. Keep `plugins/Shulkerception/config.yml` when upgrading. Each artifact has the same plugin name and configuration format. The all-versions ZIP contains the complete selection; do not put all its JARs into a server.
+
+Older Paper versions without a separately published Paper API have no independently compiled Paper edition here. A matching Bukkit build may work, but needs runtime verification against that server. Do not substitute a JAR for a different Minecraft version.
+
+## Use
+
+Place and open a shulker box. Click another box into a slot, shift-click it from your inventory, or use a number-key swap. Offhand swaps are supported where the server API exposes that click action.
+
+All shulker colors available in the target version are supported: 16 on the legacy versions, with the undyed box available on newer versions. Inner boxes may contain items or further boxes. Remove and place an inner box to open it.
+
+No commands, permissions, client mods, additional plugins, databases, or server internals are required. The listener modifies the placed inventory and clones complete item stacks. Normal server item persistence handles storage and drops.
+
+## Configuration and scope
+
+The first start creates:
 
 ```yaml
 max-depth: 5
 max-contained-shulkers: 256
 ```
 
-Depth includes the outer box. For example, depth 2 allows an outer box containing inner boxes that do not themselves contain boxes. The second limit counts every contained shulker, including descendants, in one outer box. Restart after editing configuration. Supported ranges are 2–16 for depth and 1–4096 for contained boxes. These limits prevent excessive nesting; they are not a general item-data size validator. They apply to new insertions, so existing boxes can always be removed.
+Depth includes the outer box. Depth 2 permits an outer box with inner boxes that contain no further boxes. The second setting counts every contained shulker and descendant. Supported ranges are 2–16 for depth and 1–4096 for contained boxes. Restart after editing. Limits apply to insertion; removal remains possible.
 
-- Click placement, shift-click insertion, number-key swaps, and offhand swaps are supported.
-- Hopper/dropper insertion and drag placement keep vanilla restrictions. Use clicks to insert boxes.
-- The listener skips events already cancelled by protection plugins and skips spectators. Custom portable-shulker interfaces are outside this plugin's scope. Compatibility with a particular protection/inventory plugin should be checked in-game.
-- Shulkers supplied as non-vanilla stacks are split into individual slots by clicks/shift-clicks. Hotbar swaps require a single box.
-- Both editions use public Bukkit APIs without server internals. The Bukkit edition is compiled against Spigot's maintained Bukkit API with no Paper dependency. Folia is unsupported.
+- Click placement, shift-click insertion and number-key swaps are supported.
+- Offhand swapping depends on the click action being present in the target server API.
+- Hopper/dropper insertion and dragging keep vanilla restrictions.
+- Already-cancelled protection events and spectator actions are skipped.
+- Custom portable-shulker interfaces and Folia are outside the supported scope.
+- Non-vanilla shulker stacks are split by clicks/shift-clicks; hotbar swaps require one box.
+- Limits are not a general validator for arbitrary large item data.
 
-## Build
+## Build and verify
 
-Install JDK 25 and Maven 3.9+, then run from this directory:
+Use **JDK 25 and Maven 3.9+ to build**. The build emits the appropriate Java bytecode for each target; old servers do not need Java 25 to load their legacy artifact. Run each server on its own supported Java runtime.
+
+`release-targets.json` locks Minecraft version, edition, exact API artifact, Java output level and plugin API declaration. Every target gets isolated compilation and test output.
+
+Paper 1.20.5's published API imports an obsolete Adventure snapshot. Its build uses the archived BOM metadata from Stellardrift and explicitly selects released Adventure 4.17.0 for the compile/test classpath. The release script applies this exception only to that target. Shulkerception does not call or bundle Adventure. See `compatibility/paper-1.20.5-settings.xml` and the matching Maven profile.
+
+```powershell
+# Build/test/package all pinned targets.
+./release.ps1
+
+# One Minecraft version, both available editions.
+./release.ps1 -Minecraft 1.20.4
+
+# One edition, multiple versions.
+./release.ps1 -Minecraft 1.12.2,1.16.5 -Edition bukkit
+
+# Continue interrupted work, reusing only matching source and verified artifacts.
+./release.ps1 -Resume
+
+# Use already-cached dependencies.
+./release.ps1 -Offline -Resume
+```
+
+The default Maven commands still build the current 26.2 editions:
 
 ```text
-mvn package
+mvn -P paper package
 mvn -P bukkit package
 ```
 
-The first command builds `target/paper/shulkerception-1.0.0-paper.jar`; the second builds `target/bukkit/shulkerception-1.0.0-bukkit.jar`. Output directories are separate so builds cannot reuse classes compiled against the other API. Paper API is pinned to `26.2.build.123-stable`; the Bukkit edition pins Spigot API to `26.2-R0.1-20260816.205300-12`. Each API is provided by the server; dependencies are not bundled into the plugin. Select one profile per build. Plugin version and author are inserted into `plugin.yml` from Maven properties.
+Artifacts are generated under `target/<edition>/<minecraft-version>/` and copied to `dist/v1.1.0/`. The complete package is `dist/shulkerception-1.1.0-all-versions.zip`. SHA256SUMS.txt covers the JARs and documentation. BUILD_REPORT.json records the exact API, test count, bytecode target and checksum for each artifact.
 
-Run `./release.ps1` in PowerShell to test/build both editions, verify their embedded version/author, and regenerate the release folder, checksums, and ZIP. It uses Maven from PATH or the downloaded Maven in this workspace. This prepares local release files; publishing is a separate step.
+The release script verifies every JAR's embedded version/author, plugin API declaration and class-file Java level. Tests cover each available shulker color, contents/metadata retention, cursor/hotbar swaps, inventory capacity, limits and cancelled events. **Compilation and mocked API tests do not establish in-game compatibility on every historical server.** The release table records API coverage, not runtime certification.
 
-For this workspace, the downloaded Maven is also available:
+Before using valuable items, check click/shift/hotbar insertion, full inventories, simultaneous players, protection plugins, block breaking/replacement, and persistence through a server restart on the actual server version.
 
-```powershell
-& .\.tools\apache-maven-3.9.11\bin\mvn.cmd '-Dmaven.repo.local=.m2' package
-& .\.tools\apache-maven-3.9.11\bin\mvn.cmd '-Dmaven.repo.local=.m2' -P bukkit package
-```
-
-## Verification
-
-Both editions build successfully on Java 25, with all 31 JUnit/Mockito test cases passing against each API. They cover all 17 colors, preservation of nested metadata, cursor and hotbar swaps, offhand swaps, partial/full inventories, cancelled events, spectators, custom interfaces, aggregate/depth limits, and removal above limits. Tests use mocked server API objects; they do not verify Minecraft packet behavior or world persistence on a running server. Neither edition has been tested in-game here.
-
-Before using valuable items, perform this in-game check:
-
-1. Nest two differently colored boxes, with named items inside the inner one. Try click, shift-click, hotbar, and offhand insertion.
-2. Remove the inner box and verify its contents. Try inserting into a full outer box.
-3. In survival, break the outer box, pick it up, place it again, and verify both boxes and their items.
-4. Restart the server and verify the contents again.
-5. Test simultaneous access by two players and any installed protection plugins.
-
-Paper's [project setup documentation](https://docs.papermc.io/paper/dev/project-setup/) specifies the 26.2 API and Java 25. The implementation follows the cancellation-and-apply guidance in [InventoryClickEvent](https://jd.papermc.io/paper/26.2/org/bukkit/event/inventory/InventoryClickEvent.html).
-
-The Bukkit edition follows [Spigot's Maven guidance](https://www.spigotmc.org/wiki/spigot-maven/) and uses the shared methods in its [26.2 Bukkit API](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/block/Container.html).
+Shulker boxes were introduced in the [Exploration Update](https://www.minecraft.net/de-de/article/block-week--shulker-box); versions before 1.11 cannot support this feature. Bukkit plugins also do not run on Bedrock, the unmodified Mojang server, or arbitrary snapshots.

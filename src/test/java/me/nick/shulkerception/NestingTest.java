@@ -29,7 +29,13 @@ import static org.mockito.Mockito.*;
 class NestingTest {
     private final Inventory top = mock(Inventory.class);
     private final PlayerInventory bottom = mock(PlayerInventory.class);
-    private final InventoryView view = mock(InventoryView.class);
+    private final InventoryView view = mock(InventoryView.class, invocation -> {
+        // InventoryView.getInventory(int) was introduced after the first shulker release.
+        if (invocation.getMethod().getName().equals("getInventory")) {
+            return (int) invocation.getArgument(0) < 27 ? top : bottom;
+        }
+        return RETURNS_DEFAULTS.answer(invocation);
+    });
     private final Player player = mock(Player.class);
     private final ItemStack[] contents = new ItemStack[27];
     private final ItemStack[] storage = new ItemStack[41];
@@ -44,7 +50,6 @@ class NestingTest {
         when(view.getPlayer()).thenReturn(player);
         when(view.getCursor()).thenAnswer(inv -> cursor);
         doAnswer(inv -> { cursor = inv.getArgument(0); return null; }).when(view).setCursor(any());
-        when(view.getInventory(anyInt())).thenAnswer(inv -> (int) inv.getArgument(0) < 27 ? top : bottom);
         when(view.convertSlot(anyInt())).thenAnswer(inv -> (int) inv.getArgument(0) < 27 ? inv.getArgument(0) : (int) inv.getArgument(0) - 27);
         when(view.getItem(anyInt())).thenAnswer(inv -> {
             int raw = inv.getArgument(0);
@@ -95,7 +100,7 @@ class NestingTest {
 
     @Test
     void rightClickSplitsCustomStackWithoutLoss() {
-        cursor = item(Material.SHULKER_BOX, 3, null);
+        cursor = item(baseShulker(), 3, null);
         listener.onClick(click(0, ClickType.RIGHT, -1));
         assertEquals(1, contents[0].getAmount());
         assertEquals(2, cursor.getAmount());
@@ -105,9 +110,9 @@ class NestingTest {
     void shiftClickMovesOnlyWhatFits() {
         Arrays.fill(contents, item(Material.STONE, 64, null));
         contents[4] = null;
-        storage[0] = item(Material.SHULKER_BOX, 3, null);
+        storage[0] = item(baseShulker(), 3, null);
         listener.onClick(click(27, ClickType.SHIFT_LEFT, -1));
-        assertEquals(Material.SHULKER_BOX, contents[4].getType());
+        assertEquals(baseShulker(), contents[4].getType());
         assertEquals(1, contents[4].getAmount());
         assertEquals(2, storage[0].getAmount());
     }
@@ -115,7 +120,7 @@ class NestingTest {
     @Test
     void fullInventoryDoesNotConsumeShiftClickedBox() {
         Arrays.fill(contents, item(Material.STONE, 64, null));
-        ItemStack source = item(Material.SHULKER_BOX, 1, null);
+        ItemStack source = item(baseShulker(), 1, null);
         storage[0] = source;
         listener.onClick(click(27, ClickType.SHIFT_RIGHT, -1));
         assertSame(source, storage[0]);
@@ -123,7 +128,7 @@ class NestingTest {
     }
 
     @ParameterizedTest
-    @EnumSource(value = ClickType.class, names = {"NUMBER_KEY", "SWAP_OFFHAND"})
+    @MethodSource("swapTypes")
     void swapsHotbarOrOffhandWithoutLoss(ClickType type) {
         int source = type == ClickType.NUMBER_KEY ? 2 : 40;
         storage[source] = item(Material.RED_SHULKER_BOX, 1, null);
@@ -136,7 +141,7 @@ class NestingTest {
 
     @Test
     void cancelledProtectionEventIsUntouched() {
-        ItemStack original = item(Material.SHULKER_BOX, 1, null);
+        ItemStack original = item(baseShulker(), 1, null);
         cursor = original;
         InventoryClickEvent event = click(0, ClickType.LEFT, -1);
         event.setCancelled(true);
@@ -148,7 +153,7 @@ class NestingTest {
     @Test
     void spectatorsCannotInsert() {
         when(player.getGameMode()).thenReturn(GameMode.SPECTATOR);
-        cursor = item(Material.SHULKER_BOX, 1, null);
+        cursor = item(baseShulker(), 1, null);
         listener.onClick(click(0, ClickType.LEFT, -1));
         assertNotNull(cursor);
         assertNull(contents[0]);
@@ -157,7 +162,7 @@ class NestingTest {
     @Test
     void customGuiIsUntouched() {
         when(top.getHolder()).thenReturn(null);
-        cursor = item(Material.SHULKER_BOX, 1, null);
+        cursor = item(baseShulker(), 1, null);
         InventoryClickEvent event = click(0, ClickType.LEFT, -1);
         listener.onClick(event);
         assertFalse(event.isCancelled());
@@ -168,7 +173,7 @@ class NestingTest {
     @Test
     void excessiveDepthRejectsInsertionWithoutChangingEitherSide() {
         listener = new NestingListener(new NestingPolicy(2, 256));
-        ItemStack original = nested(item(Material.SHULKER_BOX, 1, null));
+        ItemStack original = nested(item(baseShulker(), 1, null));
         cursor = original;
         contents[0] = item(Material.DIAMOND, 5, null);
         listener.onClick(click(0, ClickType.LEFT, -1));
@@ -180,7 +185,7 @@ class NestingTest {
     @Test
     void removalRemainsVanillaEvenOverLimit() {
         listener = new NestingListener(new NestingPolicy(2, 1));
-        contents[0] = nested(item(Material.SHULKER_BOX, 1, null));
+        contents[0] = nested(item(baseShulker(), 1, null));
         InventoryClickEvent event = click(0, ClickType.LEFT, -1);
         listener.onClick(event);
         assertFalse(event.isCancelled());
@@ -189,15 +194,15 @@ class NestingTest {
     @Test
     void aggregateLimitCountsAllSiblingsAndDescendants() {
         NestingPolicy policy = new NestingPolicy(5, 3);
-        ItemStack pair = nested(item(Material.SHULKER_BOX, 1, null));
-        assertTrue(policy.allows(new ItemStack[]{pair, item(Material.SHULKER_BOX, 1, null)}));
+        ItemStack pair = nested(item(baseShulker(), 1, null));
+        assertTrue(policy.allows(new ItemStack[]{pair, item(baseShulker(), 1, null)}));
         assertFalse(policy.allows(new ItemStack[]{pair, pair}));
     }
 
     @Test
     void depthIncludesOuterBox() {
         NestingPolicy policy = new NestingPolicy(3, 256);
-        ItemStack inner = item(Material.SHULKER_BOX, 1, null);
+        ItemStack inner = item(baseShulker(), 1, null);
         assertTrue(policy.allows(new ItemStack[]{nested(inner)}));
         assertFalse(policy.allows(new ItemStack[]{nested(nested(inner))}));
     }
@@ -219,18 +224,27 @@ class NestingTest {
 
     private static java.util.stream.Stream<Material> shulkerColors() {
         return Arrays.stream(Material.values()).filter(type -> !type.name().startsWith("LEGACY_")
-                && (type == Material.SHULKER_BOX || type.name().endsWith("_SHULKER_BOX")));
+                && (type == baseShulker() || type.name().endsWith("_SHULKER_BOX")));
     }
 
+    private static Material baseShulker() {
+        Material undyed = Material.getMaterial("SHULKER_BOX");
+        return undyed == null ? Material.PURPLE_SHULKER_BOX : undyed;
+    }
+
+    private static java.util.stream.Stream<ClickType> swapTypes() {
+        return Arrays.stream(ClickType.values()).filter(click -> click.name().equals("NUMBER_KEY")
+                || click.name().equals("SWAP_OFFHAND"));
+    }
     private static ItemStack nested(ItemStack... children) {
         Inventory inventory = mock(Inventory.class);
         when(inventory.getContents()).thenReturn(children);
         ShulkerBox box = mock(ShulkerBox.class);
-        when(box.getSnapshotInventory()).thenReturn(inventory);
+        when(box.getInventory()).thenReturn(inventory);
         BlockStateMeta meta = mock(BlockStateMeta.class);
         when(meta.hasBlockState()).thenReturn(true);
         when(meta.getBlockState()).thenReturn(box);
-        return item(Material.SHULKER_BOX, 1, meta);
+        return item(baseShulker(), 1, meta);
     }
 
     private static ItemStack item(Material type, int amount, ItemMeta meta) {

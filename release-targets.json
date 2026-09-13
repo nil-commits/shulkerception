@@ -1,0 +1,776 @@
+[
+  {
+    "minecraft": "1.11",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.11-R0.1-20161219.121403-111",
+    "java": 8,
+    "apiDeclaration": ""
+  },
+  {
+    "minecraft": "1.11.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.11.1-R0.1-20161221.061506-2",
+    "java": 8,
+    "apiDeclaration": ""
+  },
+  {
+    "minecraft": "1.11.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.11.2-R0.1-20170514.012204-124",
+    "java": 8,
+    "apiDeclaration": ""
+  },
+  {
+    "minecraft": "1.12",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.12-R0.1-20170803.111256-74",
+    "java": 8,
+    "apiDeclaration": ""
+  },
+  {
+    "minecraft": "1.12.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.12.1-R0.1-20170914.114201-28",
+    "java": 8,
+    "apiDeclaration": ""
+  },
+  {
+    "minecraft": "1.12.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.12.2-R0.1-20180712.012057-156",
+    "java": 8,
+    "apiDeclaration": ""
+  },
+  {
+    "minecraft": "1.13",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.13-R0.1-20180826.040111-146",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.13'"
+  },
+  {
+    "minecraft": "1.13.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.13.1-R0.1-20181022.190020-99",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.13'"
+  },
+  {
+    "minecraft": "1.13.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.13.2-R0.1-20190423.030901-214",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.13'"
+  },
+  {
+    "minecraft": "1.14",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.14-R0.1-20190513.225337-106",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.14'"
+  },
+  {
+    "minecraft": "1.14.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.14.1-R0.1-20190527.022734-35",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.14'"
+  },
+  {
+    "minecraft": "1.14.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.14.2-R0.1-20190621.095659-33",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.14'"
+  },
+  {
+    "minecraft": "1.14.3",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.14.3-R0.1-20190719.230402-29",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.14'"
+  },
+  {
+    "minecraft": "1.14.4",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.14.4-R0.1-20191210.224154-92",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.14'"
+  },
+  {
+    "minecraft": "1.15",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.15-R0.1-20191217.211857-17",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.15'"
+  },
+  {
+    "minecraft": "1.15.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.15.1-R0.1-20200121.033958-49",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.15'"
+  },
+  {
+    "minecraft": "1.15.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.15.2-R0.1-20200624.001023-124",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.15'"
+  },
+  {
+    "minecraft": "1.16.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.16.1-R0.1-20200811.074017-132",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.16'"
+  },
+  {
+    "minecraft": "1.16.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.16.2-R0.1-20200910.205520-57",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.16'"
+  },
+  {
+    "minecraft": "1.16.3",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.16.3-R0.1-20201025.071724-27",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.16'"
+  },
+  {
+    "minecraft": "1.16.4",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.16.4-R0.1-20210114.220528-50",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.16'"
+  },
+  {
+    "minecraft": "1.16.5",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.16.5-R0.1-20210611.041013-99",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.16'"
+  },
+  {
+    "minecraft": "1.16.5",
+    "edition": "paper",
+    "group": "com.destroystokyo.paper",
+    "artifact": "paper-api",
+    "api": "1.16.5-R0.1-20211218.082619-371",
+    "java": 8,
+    "apiDeclaration": "api-version: '1.16'"
+  },
+  {
+    "minecraft": "1.17",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.17-R0.1-20210706.122143-68",
+    "java": 16,
+    "apiDeclaration": "api-version: '1.17'"
+  },
+  {
+    "minecraft": "1.17",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.17-R0.1-20210706.043534-75",
+    "java": 16,
+    "apiDeclaration": "api-version: '1.17'"
+  },
+  {
+    "minecraft": "1.17.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.17.1-R0.1-20211121.234319-104",
+    "java": 16,
+    "apiDeclaration": "api-version: '1.17'"
+  },
+  {
+    "minecraft": "1.17.1",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.17.1-R0.1-20220414.034903-311",
+    "java": 16,
+    "apiDeclaration": "api-version: '1.17'"
+  },
+  {
+    "minecraft": "1.18",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.18-R0.1-20211210.131639-28",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.18'"
+  },
+  {
+    "minecraft": "1.18",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.18-R0.1-20211210.020702-61",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.18'"
+  },
+  {
+    "minecraft": "1.18.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.18.1-R0.1-20220228.150432-81",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.18'"
+  },
+  {
+    "minecraft": "1.18.1",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.18.1-R0.1-20220228.153921-147",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.18'"
+  },
+  {
+    "minecraft": "1.18.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.18.2-R0.1-20220607.160742-53",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.18'"
+  },
+  {
+    "minecraft": "1.18.2",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.18.2-R0.1-20220920.010157-167",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.18'"
+  },
+  {
+    "minecraft": "1.19",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.19-R0.1-20220725.090125-47",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.19-R0.1-20220725.172700-79",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.19.1-R0.1-20220804.104059-10",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.1",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.19.1-R0.1-20220805.141753-30",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.19.2-R0.1-20221207.161214-43",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.2",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.19.2-R0.1-20221206.184705-189",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.3",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.19.3-R0.1-20230314.163538-56",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.3",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.19.3-R0.1-20230312.180621-141",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.4",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.19.4-R0.1-20230607.155743-88",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.19.4",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.19.4-R0.1-20230608.201059-104",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.19'"
+  },
+  {
+    "minecraft": "1.20",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.20-R0.1-20230612.113428-32",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.20-R0.1-20230613.000034-20",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.20.1-R0.1-20230921.163938-66",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.1",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.20.1-R0.1-20230921.165944-178",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.20.2-R0.1-20231205.164257-71",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.2",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.20.2-R0.1-20231203.034718-122",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.3",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.20.3-R0.1-20231207.085553-9",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.3",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.20.3-R0.1-20231207.043048-3",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.4",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.20.4-R0.1-20240423.152506-123",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.4",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.20.4-R0.1-20241030.192207-176",
+    "java": 17,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.5",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.20.5-R0.1-20240429.101539-37",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.5",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.20.5-R0.1-20240429.035133-20",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.6",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.20.6-R0.1-20240613.150924-57",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.20.6",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.20.6-R0.1-20241030.191541-127",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.20'"
+  },
+  {
+    "minecraft": "1.21",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21-R0.1-20240807.214924-87",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21-R0.1-20240810.100446-132",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.1-R0.1-20241022.152140-54",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.1",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.1-R0.1-20250328.161643-128",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.2-R0.1-20241023.084343-5",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.3",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.3-R0.1-20241203.162251-46",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.3",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.3-R0.1-20250328.155925-87",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.4",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.4-R0.1-20250325.160956-56",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.4",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.4-R0.1-20250925.065901-231",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.5",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.5-R0.1-20250617.151721-44",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.5",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.5-R0.1-20250925.065803-26",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.6",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.6-R0.1-20250630.141818-13",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.6",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.6-R0.1-20250630.094942-50",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.7",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.7-R0.1-20250714.093637-4",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.7",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.7-R0.1-20250716.201120-28",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.8",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.8-R0.1-20250930.150928-11",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.8",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.8-R0.1-20250906.215025-55",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.9",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.9-R0.1-20251007.103132-3",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.9",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.9-R0.1-20251007.115206-20",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.10",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.10-R0.1-20251209.161938-19",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.10",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.10-R0.1-20260104.211118-51",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.11",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "1.21.11-R0.1-20251231.154832-9",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "1.21.11",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "1.21.11-R0.1-20260511.115010-91",
+    "java": 21,
+    "apiDeclaration": "api-version: '1.21'"
+  },
+  {
+    "minecraft": "26.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "26.1-R0.1-20260329.091546-5",
+    "java": 25,
+    "apiDeclaration": "api-version: '26.1'"
+  },
+  {
+    "minecraft": "26.1.1",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "26.1.1-R0.1-20260408.091146-5",
+    "java": 25,
+    "apiDeclaration": "api-version: '26.1.1'"
+  },
+  {
+    "minecraft": "26.1.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "26.1.2-R0.1-20260616.152059-13",
+    "java": 25,
+    "apiDeclaration": "api-version: '26.1.2'"
+  },
+  {
+    "minecraft": "26.1.2",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "26.1.2.build.74-stable",
+    "java": 25,
+    "apiDeclaration": "api-version: '26.1.2'"
+  },
+  {
+    "minecraft": "26.2",
+    "edition": "bukkit",
+    "group": "org.spigotmc",
+    "artifact": "spigot-api",
+    "api": "26.2-R0.1-20260816.205300-12",
+    "java": 25,
+    "apiDeclaration": "api-version: '26.2'"
+  },
+  {
+    "minecraft": "26.2",
+    "edition": "paper",
+    "group": "io.papermc.paper",
+    "artifact": "paper-api",
+    "api": "26.2.build.123-stable",
+    "java": 25,
+    "apiDeclaration": "api-version: '26.2'"
+  }
+]

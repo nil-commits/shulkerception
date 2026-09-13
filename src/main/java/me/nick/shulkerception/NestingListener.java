@@ -27,8 +27,9 @@ final class NestingListener implements Listener {
     public void onClick(InventoryClickEvent event) {
         // Check cancellation here too so direct callers obey the same contract.
         if (event.isCancelled() || event instanceof InventoryCreativeEvent
-                || !(event.getWhoClicked() instanceof Player player)
-                || player.getGameMode() == GameMode.SPECTATOR) return;
+                || !(event.getWhoClicked() instanceof Player)) return;
+        Player player = (Player) event.getWhoClicked();
+        if (player.getGameMode() == GameMode.SPECTATOR) return;
         Inventory top = event.getView().getTopInventory();
         if (!(top.getHolder() instanceof ShulkerBox)) return;
 
@@ -38,11 +39,9 @@ final class NestingListener implements Listener {
                 && isShulker(event.getCurrentItem())) {
             shiftIntoBox(event, top, player);
         } else if (rawSlot < top.getSize()) {
-            switch (event.getClick()) {
-                case LEFT, RIGHT -> cursorIntoBox(event, top, player);
-                case NUMBER_KEY, SWAP_OFFHAND -> hotbarIntoBox(event, top, player);
-                default -> { /* Vanilla handles removal, dropping and creative cloning. */ }
-            }
+            ClickType click = event.getClick();
+            if (click == ClickType.LEFT || click == ClickType.RIGHT) cursorIntoBox(event, top, player);
+            else if (click == ClickType.NUMBER_KEY || "SWAP_OFFHAND".equals(click.name())) hotbarIntoBox(event, top, player);
         }
     }
 
@@ -89,7 +88,7 @@ final class NestingListener implements Listener {
     private void hotbarIntoBox(InventoryClickEvent event, Inventory top, Player player) {
         if (!isEmpty(event.getCursor())) return;
         PlayerInventory inventory = player.getInventory();
-        boolean offhand = event.getClick() == ClickType.SWAP_OFFHAND;
+        boolean offhand = "SWAP_OFFHAND".equals(event.getClick().name());
         int button = event.getHotbarButton();
         if (!offhand && (button < 0 || button > 8)) return;
         ItemStack source = offhand ? inventory.getItemInOffHand() : inventory.getItem(button);

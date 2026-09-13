@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.nick</groupId>
   <artifactId>shulkerception</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <name>Shulkerception</name>
-  <description>Nested shulker boxes for Minecraft 26.2 servers.</description>
+  <description>Nested shulker boxes for supported Bukkit and Paper releases from Minecraft 1.11 onward.</description>
   <developers>
     <developer><id>nil-commits</id><name>nil-commits</name></developer>
   </developers>
@@ -13,39 +13,58 @@
     <plugin.author>nil-commits</plugin.author>
     <project.build.outputTimestamp>2026-09-13T00:00:00Z</project.build.outputTimestamp>
     <maven.compiler.release>25</maven.compiler.release>
+    <maven.compiler.testRelease>25</maven.compiler.testRelease>
+    <minecraft.version>26.2</minecraft.version>
+    <plugin.api.declaration>api-version: '26.2'</plugin.api.declaration>
+    <server.api.version>26.2.build.123-stable</server.api.version>
+    <server.api.group>io.papermc.paper</server.api.group>
+    <server.api.artifact>paper-api</server.api.artifact>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <server.flavor>paper</server.flavor>
   </properties>
   <repositories>
+    <repository><id>central-first</id><url>https://repo.maven.apache.org/maven2/</url></repository>
     <repository><id>papermc</id><url>https://repo.papermc.io/repository/maven-public/</url></repository>
+    <repository><id>spigot</id><url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url></repository>
   </repositories>
   <dependencies>
+    <dependency><groupId>${server.api.group}</groupId><artifactId>${server.api.artifact}</artifactId><version>${server.api.version}</version><scope>provided</scope></dependency>
     <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.13.4</version><scope>test</scope></dependency>
     <dependency><groupId>org.mockito</groupId><artifactId>mockito-core</artifactId><version>5.20.0</version><scope>test</scope></dependency>
   </dependencies>
   <profiles>
     <profile>
+      <id>paper-1.20.5-archived-adventure</id>
+      <!-- Only the build classpath needs Adventure; it is not bundled or used by the plugin. -->
+      <dependencyManagement>
+        <dependencies>
+          <dependency>
+            <groupId>net.kyori</groupId><artifactId>adventure-bom</artifactId>
+            <version>4.17.0</version><type>pom</type><scope>import</scope>
+          </dependency>
+        </dependencies>
+      </dependencyManagement>
+    </profile>
+    <profile>
       <id>paper</id>
       <activation><activeByDefault>true</activeByDefault></activation>
-      <dependencies>
-        <dependency><groupId>io.papermc.paper</groupId><artifactId>paper-api</artifactId><version>26.2.build.123-stable</version><scope>provided</scope></dependency>
-      </dependencies>
     </profile>
     <profile>
       <id>bukkit</id>
-      <properties><server.flavor>bukkit</server.flavor></properties>
+      <properties>
+        <server.flavor>bukkit</server.flavor>
+        <server.api.group>org.spigotmc</server.api.group>
+        <server.api.artifact>spigot-api</server.api.artifact>
+        <server.api.version>26.2-R0.1-20260816.205300-12</server.api.version>
+      </properties>
       <repositories>
         <repository><id>spigot</id><url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url></repository>
       </repositories>
-      <dependencies>
-        <!-- Spigot publishes the maintained Bukkit API; source uses only org.bukkit APIs. -->
-        <dependency><groupId>org.spigotmc</groupId><artifactId>spigot-api</artifactId><version>26.2-R0.1-20260816.205300-12</version><scope>provided</scope></dependency>
-      </dependencies>
     </profile>
   </profiles>
   <build>
-    <directory>${project.basedir}/target/${server.flavor}</directory>
-    <finalName>${project.artifactId}-${project.version}-${server.flavor}</finalName>
+    <directory>${project.basedir}/target/${server.flavor}/${minecraft.version}</directory>
+    <finalName>${project.artifactId}-${project.version}-mc${minecraft.version}-${server.flavor}</finalName>
     <resources>
       <resource><directory>src/main/resources</directory><filtering>true</filtering></resource>
     </resources>

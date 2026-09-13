@@ -1,6 +1,6 @@
 name: Shulkerception
 version: '${project.version}'
 main: me.nick.shulkerception.ShulkerceptionPlugin
-api-version: '26.2'
+${plugin.api.declaration}
 description: Put shulker boxes inside placed shulker boxes using vanilla clients.
 author: '${plugin.author}'

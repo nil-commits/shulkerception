@@ -17,13 +17,14 @@ final class NestingPolicy {
     static boolean isEmpty(ItemStack item) {
         if (item == null || item.getAmount() <= 0) return true;
         Material type = item.getType();
-        return type == Material.AIR || type == Material.CAVE_AIR || type == Material.VOID_AIR;
+        return type == Material.AIR || "CAVE_AIR".equals(type.name()) || "VOID_AIR".equals(type.name());
     }
 
     static boolean isShulker(ItemStack item) {
         if (isEmpty(item)) return false;
         Material type = item.getType();
-        return type == Material.SHULKER_BOX || type.name().endsWith("_SHULKER_BOX");
+        return !type.name().startsWith("LEGACY_")
+                && ("SHULKER_BOX".equals(type.name()) || type.name().endsWith("_SHULKER_BOX"));
     }
 
     boolean allows(ItemStack[] contents) {
@@ -35,11 +36,15 @@ final class NestingPolicy {
             if (!isShulker(item)) continue;
             if (depth > maxDepth || item.getAmount() > maxBoxes - count[0]) return false;
             count[0] += item.getAmount();
-            if (item.getItemMeta() instanceof BlockStateMeta meta && meta.hasBlockState()
-                    && meta.getBlockState() instanceof ShulkerBox box) {
+            if (item.getItemMeta() instanceof BlockStateMeta) {
+                BlockStateMeta meta = (BlockStateMeta) item.getItemMeta();
+                if (!meta.hasBlockState() || !(meta.getBlockState() instanceof ShulkerBox)) continue;
+                ShulkerBox box = (ShulkerBox) meta.getBlockState();
                 // Account for each copy if another plugin supplies stacked shulkers.
                 for (int copy = 0; copy < item.getAmount(); copy++) {
-                    if (!check(box.getSnapshotInventory().getContents(), depth + 1, count)) return false;
+                    // The state attached to item metadata is unplaced: getInventory()
+                    // reads its snapshot, including on 1.11 where Container did not exist.
+                    if (!check(box.getInventory().getContents(), depth + 1, count)) return false;
                 }
             }
         }

@@ -15,7 +15,7 @@ public final class ShulkerceptionPlugin extends JavaPlugin {
 
     private int bounded(String key, int fallback, int min, int max) {
         int configured = getConfig().getInt(key, fallback);
-        int value = Math.clamp(configured, min, max);
+        int value = Math.max(min, Math.min(configured, max));
         if (value != configured) {
             getLogger().warning(key + " is outside " + min + "-" + max + "; using " + value + ".");
         }

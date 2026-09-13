@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>me.nick</groupId>
+  <artifactId>shulkerception</artifactId>
+  <version>1.0.0</version>
+  <name>Shulkerception</name>
+  <description>Nested shulker boxes for Minecraft 26.2 servers.</description>
+  <developers>
+    <developer><id>nil-commits</id><name>nil-commits</name></developer>
+  </developers>
+  <properties>
+    <plugin.author>nil-commits</plugin.author>
+    <project.build.outputTimestamp>2026-09-13T00:00:00Z</project.build.outputTimestamp>
+    <maven.compiler.release>25</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <server.flavor>paper</server.flavor>
+  </properties>
+  <repositories>
+    <repository><id>papermc</id><url>https://repo.papermc.io/repository/maven-public/</url></repository>
+  </repositories>
+  <dependencies>
+    <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>5.13.4</version><scope>test</scope></dependency>
+    <dependency><groupId>org.mockito</groupId><artifactId>mockito-core</artifactId><version>5.20.0</version><scope>test</scope></dependency>
+  </dependencies>
+  <profiles>
+    <profile>
+      <id>paper</id>
+      <activation><activeByDefault>true</activeByDefault></activation>
+      <dependencies>
+        <dependency><groupId>io.papermc.paper</groupId><artifactId>paper-api</artifactId><version>26.2.build.123-stable</version><scope>provided</scope></dependency>
+      </dependencies>
+    </profile>
+    <profile>
+      <id>bukkit</id>
+      <properties><server.flavor>bukkit</server.flavor></properties>
+      <repositories>
+        <repository><id>spigot</id><url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url></repository>
+      </repositories>
+      <dependencies>
+        <!-- Spigot publishes the maintained Bukkit API; source uses only org.bukkit APIs. -->
+        <dependency><groupId>org.spigotmc</groupId><artifactId>spigot-api</artifactId><version>26.2-R0.1-20260816.205300-12</version><scope>provided</scope></dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+  <build>
+    <directory>${project.basedir}/target/${server.flavor}</directory>
+    <finalName>${project.artifactId}-${project.version}-${server.flavor}</finalName>
+    <resources>
+      <resource><directory>src/main/resources</directory><filtering>true</filtering></resource>
+    </resources>
+    <plugins>
+      <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.14.0</version></plugin>
+      <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.4</version><configuration><argLine>-javaagent:${settings.localRepository}/org/mockito/mockito-core/5.20.0/mockito-core-5.20.0.jar</argLine></configuration></plugin>
+      <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-jar-plugin</artifactId><version>3.4.2</version></plugin>
+    </plugins>
+  </build>
+</project>

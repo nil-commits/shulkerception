@@ -1,0 +1,6 @@
+# Includes the outer box: 2 means an outer box may contain empty/ordinary inner boxes.
+# Allowed range: 2-16. Restart the server after changing this file.
+max-depth: 5
+# Maximum total shulker boxes inside one outer box, including all descendants.
+# Allowed range: 1-4096. Limits apply to new insertions; removal is always possible.
+max-contained-shulkers: 256

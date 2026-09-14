@@ -2,6 +2,8 @@
 
 **Version 1.1.0 · Author: nil-commits**
 
+Licensed under the [MIT License](LICENSE). Copyright (c) 2026 nil-commits.
+
 Put shulker boxes inside placed shulker boxes using ordinary Minecraft Java clients.
 Version-specific Bukkit/Spigot and Paper builds cover **55 stable Minecraft versions from 1.11 through 26.2**, with **86 pinned API build targets**. See [COMPATIBILITY.md](COMPATIBILITY.md) for the exact coverage and exceptions.
 

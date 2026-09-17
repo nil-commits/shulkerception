@@ -7,6 +7,12 @@ Licensed under the [MIT License](LICENSE). Copyright (c) 2026 nil-commits.
 Put shulker boxes inside placed shulker boxes using ordinary Minecraft Java clients.
 Version-specific Bukkit/Spigot and Paper builds cover **55 stable Minecraft versions from 1.11 through 26.2**, with **86 pinned API build targets**. See [COMPATIBILITY.md](COMPATIBILITY.md) for the exact coverage and exceptions.
 
+## Verification status
+
+The **Paper 26.2** build (`shulkerception-1.1.0-mc26.2-paper.jar`) has been verified in-game on a live Paper 26.2 server: placing and opening boxes, nesting, insertion by click / shift-click / number-key / offhand, and persistence across a server restart.
+
+All other version-specific targets are covered by compilation, mocked inventory tests, metadata and Java-bytecode checks only. See [COMPATIBILITY.md](COMPATIBILITY.md) for per-version API coverage.
+
 ## Download and install
 
 Get the JAR for your exact Minecraft version and server edition from the [GitHub releases](https://github.com/nil-commits/shulkerception/releases).
@@ -82,7 +88,7 @@ mvn -P bukkit package
 
 Artifacts are generated under `target/<edition>/<minecraft-version>/` and copied to `dist/v1.1.0/`. The complete package is `dist/shulkerception-1.1.0-all-versions.zip`. SHA256SUMS.txt covers the JARs and documentation. BUILD_REPORT.json records the exact API, test count, bytecode target and checksum for each artifact.
 
-The release script verifies every JAR's embedded version/author, plugin API declaration and class-file Java level. Tests cover each available shulker color, contents/metadata retention, cursor/hotbar swaps, inventory capacity, limits and cancelled events. **Compilation and mocked API tests do not establish in-game compatibility on every historical server.** The release table records API coverage, not runtime certification.
+The release script verifies every JAR's embedded version/author, plugin API declaration and class-file Java level. Tests cover each available shulker color, contents/metadata retention, cursor/hotbar swaps, inventory capacity, limits and cancelled events. **Compilation and mocked API tests do not establish in-game compatibility on every historical server.** The release table records API coverage, not runtime certification. The Paper 26.2 build is additionally verified in-game (see [Verification status](#verification-status)).
 
 Before using valuable items, check click/shift/hotbar insertion, full inventories, simultaneous players, protection plugins, block breaking/replacement, and persistence through a server restart on the actual server version.
 

@@ -24,3 +24,7 @@ Minecraft releases before 1.11 have no shulker boxes. The stable Minecraft 1.16 
 Some older/intermediate versions have a Bukkit target but no independently published Paper API target. The compatibility table makes this explicit. Snapshots, pre-releases, release candidates, Bedrock, Mojang vanilla servers and Folia are not included.
 
 Each published target must pass API compilation, mocked inventory tests, plugin metadata checks and Java bytecode-level checks. These checks are not a substitute for in-game verification on all historical servers.
+
+## Verification
+
+The **Paper 26.2** build (`shulkerception-1.1.0-mc26.2-paper.jar`) has been verified in-game on a live Paper 26.2 server: nesting, insertion via click / shift-click / number-key / offhand, and persistence across a server restart. All other targets remain compilation- and mock-tested only.
